@@ -40,7 +40,7 @@ canvas.addEventListener('mousemove', (e) => {
             for (let i = 0; i <= steps; i++) {
                 const x = previousX + ((e.offsetX - previousX) / steps) * i;
                 const y = previousY + ((e.offsetY - previousY) / steps) * i;
-                ctx.clearRect(x-diameter/2, y-diameter/2, diameter, diameter);
+                ctx.clearRect(x - diameter / 2, y - diameter / 2, diameter, diameter);
             }
         }
         previousX = e.offsetX;
@@ -58,7 +58,7 @@ canvas.addEventListener('mousemove', (e) => {
                 ctx.fillStyle = PEN_color;
                 // 开始绘制圆形
                 ctx.beginPath();
-                ctx.arc(x, y , diameter/2, 0, Math.PI * 2, true);
+                ctx.arc(x, y, diameter / 2, 0, Math.PI * 2, true);
                 ctx.fill(); // 填充圆形
                 ctx.closePath();
             }
@@ -102,16 +102,16 @@ function clearCanvas() {
 function Use_rubber() {
     model = "RUBBER";
     Choose_Border();
-    circle.style.borderRadius="0%";
-    circle.style.backgroundColor="rgba(128, 128, 128, 0.2)"
+    circle.style.borderRadius = "0%";
+    circle.style.backgroundColor = "rgba(128, 128, 128, 0.2)"
 } function Use_pen() {
     model = "PEN";
     Choose_Border();
-    circle.style.borderRadius="50%";circle.style.backgroundColor="rgba(0, 0, 0, 0.2)"
+    circle.style.borderRadius = "50%"; circle.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
 } function Choose_Color() {
     const colorContainer = document.getElementById('COLOR');
     colorContainer.style.display = "block"; // 显示颜色按钮容器
-    
+
 
     const ColorID = [
         "#000000", "#FFFFFF", "#FF0000", "#00FF00", "#0000FF",
@@ -134,7 +134,7 @@ function Use_rubber() {
             model = "PEN";
             Choose_Border();
             document.getElementById('ChooseColor').style.backgroundColor = color;
-            circle.style.borderRadius="50%";circle.style.backgroundColor="rgba(0, 0, 0, 0.2)"
+            circle.style.borderRadius = "50%"; circle.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
         };
         colorContainer.appendChild(button); // 将按钮添加到容器中
     });
@@ -146,14 +146,45 @@ document.addEventListener('contextmenu', (e) => {
 document.getElementById('sizeSlider').addEventListener('input', () => {
     document.getElementById('sizeSliderP').textContent = `Size:${document.getElementById('sizeSlider').value}`;
     PEN_size = document.getElementById('sizeSlider').value;
-    circle.style.width=document.getElementById('sizeSlider').value+"px";
-    circle.style.height=document.getElementById('sizeSlider').value+"px";
+    circle.style.width = document.getElementById('sizeSlider').value + "px";
+    circle.style.height = document.getElementById('sizeSlider').value + "px";
 });
 canvas.addEventListener('mouseleave', () => {
-    circle.style.display="none";
+    circle.style.display = "none";
 });
-
 canvas.addEventListener('mouseenter', () => {
-    circle.style.display="block";
+    circle.style.display = "block";
 });
+function About() {
+    const mitLicense = `
+MIT License
+
+Copyright (c) 2024 https://github.com/bowen-H0
+
+This software(Arcety Canvas) is licensed under the MIT License. For more details, please refer to the license file.
+    
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+`;
+    const fontLicense=`
+About font:
+Name:OpenMoji Black
+Copyright:OpenMoji © HfG Schwäbisch Gmünd CC-BY-SA-4.0
+Describe:Open-source emojis for designers, developers and everyone else! http://openmoji.org/ https://github.com/hfg-gmuend/openmoji
+Manufacturer:Hochschule für Gestaltung Schwäbisch Gmünd
+Designer:Daniel Utz & Benedikt Groß with students of the HfG Schwäbisch Gmünd and other contributors
+License:Creative Commons Share Alike 4.0
+`
+if(document.getElementById('license').innerText !=""){
+    document.getElementById('license').innerText ="";
+}else{
+    document.getElementById('license').innerText = mitLicense+fontLicense;
+}
+    
+}
 Choose_Border();
