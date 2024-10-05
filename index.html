@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+            cursor: crosshair;
+        }
+
+        body button:hover {
+            cursor: pointer;
+        }
+        body{
+            user-select: none;
+        }
+        #BU button {
+            width: 30px;
+            height: 30px;
+            background-color: grey;
+        }
+        #COLOR{
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            height: auto;
+            width: auto;
+            background-color: rgba(255, 255, 255, 0);
+            
+        }.colorButton{
+            height: 30px;
+            width: 30px;
+            border: 3px solid rgb(29, 29, 29); /* 实线边框 */
+            position: relative;
+            top: 1px;
+        }
+        #circle {
+            width: 5px; /* 圆形宽度 */
+            height: 5px; /* 圆形高度 */
+            background-color: rgba(0, 0, 0, 0.2); /* 圆形颜色 */
+            border-radius: 50%; /* 设置圆角为50%形成圆形 */
+            position: absolute; /* 使用绝对定位 */
+            pointer-events: none; /* 不阻止鼠标事件 */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="BU">
+            <h1 style="display: inline;">Canvas&nbsp;&nbsp;&nbsp;</h1><button
+            onclick="Choose_Color()"  id="ChooseColor"  style="width: 30px;height: 30px;background-color: #000000;">🎨</button>
+            <P style="display: inline;">&nbsp;</P>
+            <button onclick="Use_pen()" id="pen">✏️</button>
+            <P style="display: inline;">&nbsp;</P><button id="rubber" onclick="Use_rubber()">🧽</button>
+            <input type="range" id="sizeSlider" min="1" max="50" value="5" step="1">
+            <p style="display: inline;" id="sizeSliderP">Size:5</p>
+            <br>
+        </div>
+        <button onclick="clearCanvas()">Clear Canvas</button>
+    </div>
+    <canvas id="drawingCanvas" width="2000" height="1000"></canvas>
+    <div id="COLOR">
+        
+    </div>
+    <div id="circle"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
