@@ -1,6 +1,8 @@
 # canvas
 https://bowen-h0.github.io/canvas/
-basic artboard
+Name:Arcety Canvas
+Describe:basic artboard
+
 
 MIT License
 
