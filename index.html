@@ -4,8 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas</title>
+    <title>Arcety Canvas</title>
     <style>
+        @font-face {
+            font-family: 'OpenMoji';
+            src: url('OpenMoji-black-glyf.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         canvas {
             border: 1px solid #000;
             cursor: crosshair;
@@ -14,36 +21,56 @@
         body button:hover {
             cursor: pointer;
         }
-        body{
+
+        body {
             user-select: none;
+            overflow: hidden;
         }
+
         #BU button {
             width: 30px;
             height: 30px;
-            background-color: grey;
+            background-color: rgb(255, 255, 255);
+            font-family: 'OpenMoji', sans-serif;
         }
-        #COLOR{
+
+        #COLOR {
             position: absolute;
             left: 20px;
             top: 10px;
             height: auto;
             width: auto;
             background-color: rgba(255, 255, 255, 0);
-            
-        }.colorButton{
+
+        }
+        .colorButton {
             height: 30px;
             width: 30px;
-            border: 3px solid rgb(29, 29, 29); /* 实线边框 */
+            border: 3px solid rgb(29, 29, 29);
+            /* 实线边框 */
             position: relative;
             top: 1px;
+
         }
+
         #circle {
-            width: 5px; /* 圆形宽度 */
-            height: 5px; /* 圆形高度 */
-            background-color: rgba(0, 0, 0, 0.2); /* 圆形颜色 */
-            border-radius: 50%; /* 设置圆角为50%形成圆形 */
-            position: absolute; /* 使用绝对定位 */
-            pointer-events: none; /* 不阻止鼠标事件 */
+            width: 5px;
+            /* 圆形宽度 */
+            height: 5px;
+            /* 圆形高度 */
+            background-color: rgba(0, 0, 0, 0.2);
+            /* 圆形颜色 */
+            border-radius: 50%;
+            /* 设置圆角为50%形成圆形 */
+            position: absolute;
+            /* 使用绝对定位 */
+            pointer-events: none;
+            /* 不阻止鼠标事件 */
+        }#license {
+            max-height: 200px; /* 设置最大高度 */
+            overflow-y: auto; /* 仅在y轴上允许滚动 */
+            background-color: #f8f8f8; /* 背景色 */
+            position: absolute;
         }
     </style>
 </head>
@@ -51,8 +78,8 @@
 <body>
     <div>
         <div id="BU">
-            <h1 style="display: inline;">Canvas&nbsp;&nbsp;&nbsp;</h1><button
-            onclick="Choose_Color()"  id="ChooseColor"  style="width: 30px;height: 30px;background-color: #000000;">🎨</button>
+            <h1 style="display: inline;">Canvas&nbsp;&nbsp;&nbsp;</h1><button onclick="Choose_Color()" id="ChooseColor"
+                style="width: 30px;height: 30px;background-color: #000000;">🎨</button>
             <P style="display: inline;">&nbsp;</P>
             <button onclick="Use_pen()" id="pen">✏️</button>
             <P style="display: inline;">&nbsp;</P><button id="rubber" onclick="Use_rubber()">🧽</button>
@@ -61,11 +88,13 @@
             <br>
         </div>
         <button onclick="clearCanvas()">Clear Canvas</button>
+        <button onclick="About()">About</button>
     </div>
     <canvas id="drawingCanvas" width="2000" height="1000"></canvas>
+    <div id="license"></div>
     <div id="COLOR">
-        
     </div>
+    
     <div id="circle"></div>
     <script src="script.js"></script>
 </body>
