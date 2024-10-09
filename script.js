@@ -36,6 +36,7 @@ canvas.addEventListener('mouseup', () => {
 let text_input_E;
 canvas.addEventListener('mousedown', (e) => {
     if (model === "TEXT"&&isInput==false) {
+        isInput=true;
         const textInput = document.getElementById("text_input");
         textInput.style.display = "block"; // 显示输入框
         textInput.focus(); // 聚焦到输入框
