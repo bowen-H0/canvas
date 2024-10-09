@@ -1,3 +1,17 @@
+<!-- 
+MIT License
+
+Copyright (c) 2024 https://github.com/bowen-H0
+
+This software (Arcety Canvas) is licensed under the MIT License. For more details, please refer to the license file.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -14,17 +28,45 @@
         }
 
         canvas {
+            position: relative;
+            left: 2px;
             border: 1px solid #000;
             cursor: crosshair;
         }
 
-        body button:hover {
-            cursor: pointer;
+        body button:hover,
+        #loadLabel:hover {
+            background-color: #f6f6f6;
         }
 
         body {
             user-select: none;
             overflow: hidden;
+            margin: 0;
+        }
+
+        body button,
+        #loadLabel {
+            background-color: #ffffff;
+            /* 按钮背景颜色改为白色 */
+            color: #333;
+            /* 按钮文字颜色 */
+            border: 1px solid #333;
+            /* 边框颜色 */
+            padding: 2px 3px;
+            /* 按钮内边距 */
+            font-size: 14px;
+            /* 字体大小 */
+            cursor: pointer;
+            /* 鼠标悬停时显示为手形光标 */
+            transition: background-color 0.3s, color 0.3s;
+            /* 过渡效果 */
+            outline: none;
+            /* 移除轮廓 */
+            margin: -2px;
+            /* 添加边距 */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
         }
 
         #BU button {
@@ -41,12 +83,14 @@
             height: auto;
             width: auto;
             background-color: rgba(255, 255, 255, 0);
-
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            /* 添加阴影效果 */
         }
+
         .colorButton {
             height: 30px;
             width: 30px;
-            border: 3px solid rgb(29, 29, 29);
+            border: 3px solid #444;
             /* 实线边框 */
             position: relative;
             top: 1px;
@@ -66,36 +110,47 @@
             /* 使用绝对定位 */
             pointer-events: none;
             /* 不阻止鼠标事件 */
-        }#license {
-            max-height: 200px; /* 设置最大高度 */
-            overflow-y: auto; /* 仅在y轴上允许滚动 */
-            background-color: #f8f8f8; /* 背景色 */
-            position: absolute;
+        }
+
+        #loadButton {
+            display: none;
+        }
+
+        #text_input::placeholder {
+            color: red;
+            /* 设置placeholder的颜色 */
+            opacity: 1;
+            /* 使颜色完全不透明 */
         }
     </style>
 </head>
 
 <body>
-    <div>
+    <div style="position: relative;left: 2px; height: 55px;">
         <div id="BU">
             <h1 style="display: inline;">Canvas&nbsp;&nbsp;&nbsp;</h1><button onclick="Choose_Color()" id="ChooseColor"
-                style="width: 30px;height: 30px;background-color: #000000;">🎨</button>
+                style="width: 30px;height: 30px;background-color: #000000;">&nbsp;</button>
             <P style="display: inline;">&nbsp;</P>
             <button onclick="Use_pen()" id="pen">✏️</button>
             <P style="display: inline;">&nbsp;</P><button id="rubber" onclick="Use_rubber()">🧽</button>
+            <P style="display: inline;">&nbsp;</P><button id="text" onclick="Use_text()">A</button>
             <input type="range" id="sizeSlider" min="1" max="50" value="5" step="1">
             <p style="display: inline;" id="sizeSliderP">Size:5</p>
             <br>
         </div>
         <button onclick="clearCanvas()">Clear Canvas</button>
-        <button onclick="About()">About</button>
+        <button id="ExportButton">Save</button>
+        <input type="file" id="loadButton" accept="image/*" />
+        <label for="loadButton" id="loadLabel">Load</label>
+        <button onclick="About()">Github</button>
     </div>
-    <canvas id="drawingCanvas" width="2000" height="1000"></canvas>
-    <div id="license"></div>
+    <canvas id="drawingCanvas" width="2000" height="1000" style="background-color: rgb(255, 255, 255);"></canvas>
     <div id="COLOR">
     </div>
-    
+
     <div id="circle"></div>
+    <input type="text" id="text_input" placeholder="Enter text"
+        style="position: absolute; bottom: 0px; border: 2px solid red;width: 300px;height: 30px;">
     <script src="script.js"></script>
 </body>
 
