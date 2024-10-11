@@ -5,7 +5,7 @@ Name:Arcety Canvas
 
 Describe:basic artboard
 
-[Snap craft](https://snapcraft.io/arcety-canvas)
+[get it form Snapcraft](https://snapcraft.io/arcety-canvas)
 
 MIT License
 
