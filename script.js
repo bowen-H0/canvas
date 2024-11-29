@@ -46,20 +46,34 @@ canvas.addEventListener('mousedown', (e) => {
 // 监听输入框的键盘事件
 document.getElementById("text_input").addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
+        event.preventDefault(); // 阻止默认换行行为
         const textInput = document.getElementById("text_input");
         const text = textInput.value; // 获取输入的文本
+
         if (text) {
-            // 绘制文本
-            ctx.font = PEN_size+'px Arial'; // 设置字体样式
+            const lines = text.split('\n'); // 按换行符分割文本
+            ctx.font = PEN_size + 'px Arial'; // 设置字体样式
             ctx.fillStyle = PEN_color; // 设置填充颜色
-            ctx.fillText(text, text_input_E.offsetX, text_input_E.offsetY); // 在 Canvas 上绘制文本
-       
+
+            let x = text_input_E.offsetX; // 起始 x 坐标
+            let y = text_input_E.offsetY; // 起始 y 坐标
+
+            const lineHeight = PEN_size * 1.2; // 行高，可根据字体大小调整
+
+            // 逐行绘制
+            lines.forEach((line) => {
+                ctx.fillText(line, x, y); // 在 Canvas 上绘制单行文本
+                y += lineHeight; // 换行
+            });
         }
-        textInput.value = ''; // 清空输入框
-        textInput.style.display = "none"; // 隐藏输入框
-        isInput=false;
+
+        // 清空并隐藏输入框
+        textInput.value = ''; 
+        textInput.style.display = "none"; 
+        isInput = false;
     }
 });
+
 // 绘制
 canvas.addEventListener('mousemove', (e) => {
     const x = e.clientX;
